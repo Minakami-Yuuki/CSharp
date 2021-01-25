@@ -112,3 +112,53 @@
     6.空字符：\0	(例：str = "c\0h";	打印为:ch)
     7.警报音：\a	(例：str = "\a";	打印为:控制台输出后发出警报音)
 ```
+
+```c#
+7.隐式转换：
+	1.同类型转换：(大类型转小类型)
+		①.long ——> int ——> short ——> sbyte
+		②.ulong ——> uint ——> ushort ——> byte
+		③.double ——> float (注：decimal无法和double float相互转换)
+	2.不同类型转换：
+		①.不同类型整形转换：
+			1.整形转换：
+				①.无符号无法装载有符号 (即：ulong ≠> int)
+				②.有符号可以装载无符号 (要求：大范围转小范围)
+					long ——> uint ushort byte
+			2.浮点转换：
+				①.浮点数可以装载整形数
+			3.特殊转换：
+				①.bool类型无法和任意类型转换 
+				②.char类型可以转换为整形和浮点型 默认转换为ASCII码
+				③.string类型无法和任意类型转换
+			(bool和string类型无法转换原因：没有对应转换类型和无法确定真实范围)
+```
+
+```c#
+8.显示转换：
+	1.括号强转：(常用于小范围转大范围) (bool 和 string 类型不适用)
+		例： sbyte sb = 0;
+			int i = (int) sb;	//打印为0
+		(缺点：精度缺失 无法进行四舍五入计算)
+	2.Parse法：(常用于字符串转数值或字符)
+		例： int i = int.parse("123456");	//打印为123456
+			 char c = char.parse("A");	//打印为A
+		(缺点：会出现超出范围转换而报错)
+	3.Convert.To法：(常用于各类不同类型之间相互转换)
+        例： int i = Convert.Toint32("12");	//打印为12
+			 i = Convert.Toint32(false);	//打印为0
+			 i = Convert.Toint32(true);		//打印为1
+			 sbyte sb = Convert.Tosbyte("1");	//打印为1
+			 short s = Convert.Toint16("1");	//打印为1
+			 long l = Convert.Toint64("1");		//打印为1
+			 float f = Convert.ToSingle("13.2");	//打印为13.2
+			 double b = Convert.ToDouble("13.1");	//打印为13.1
+			 decimal de = Convert.ToDecimal("13.0");	//打印为13.0
+			 bool bo = Convert.ToBoolean("true");	//打印为true
+			 char c = Convert.ToChar("A");	//打印为A
+			(注意：Convert.To后面接各类型的格式均不同)
+			(其浮点数转整数类型可以进行四舍五入)
+	4.toString()法：(常用于其他类型转字符串类型)
+        例： string str = true.toString();	//打印为true
+			 (打印时若进行字符串拼接 则system会自动调用.toString()方法)
+```
